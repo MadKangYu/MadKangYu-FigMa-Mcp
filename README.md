@@ -1,13 +1,25 @@
+<!-- 
+  Figma MCP Guide | Figma to React | Figma to Code | AI Design to Code
+  Claude Code + Figma | MCP Server Setup | Figma Plugin Development
+  Design System Automation | Figma API | Figma Dev Mode | Auto Layout
+  figma-mcp-go | figma-implement-design | figma-generate-design
+  React TypeScript Tailwind | Next.js | Vue | HTML CSS
+  Design Tokens | Figma Variables | Code Connect
+  Korean: 피그마 MCP 가이드 | 피그마 코드 변환 | AI 디자인 자동화
+-->
+
 <p align="center">
-  <img src="https://img.shields.io/badge/Figma-MCP-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma MCP" />
-  <img src="https://img.shields.io/badge/Claude-Code-FF6B35?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude Code" />
-  <img src="https://img.shields.io/badge/React-Tailwind-38BDF8?style=for-the-badge&logo=react&logoColor=white" alt="React + Tailwind" />
+  <img src="https://img.shields.io/badge/Figma-MCP-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma MCP Server Guide" />
+  <img src="https://img.shields.io/badge/Claude-Code-FF6B35?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude Code AI Agent" />
+  <img src="https://img.shields.io/badge/React-Tailwind-38BDF8?style=for-the-badge&logo=react&logoColor=white" alt="React TypeScript Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js App Router" />
 </p>
 
 <h1 align="center">Figma MCP — Design by Talking</h1>
+<h3 align="center">Beyond Figma Plugins. AI reads, writes, and converts your designs to production code.</h3>
 
 <p align="center">
-  <strong>Tell AI what you want. It reads Figma, writes Figma, and generates production code.</strong>
+  <strong>The complete guide to Figma MCP — 16 tools, 7 skills, 15 prompt patterns, auto-install scripts, and troubleshooting for every platform.</strong>
 </p>
 
 <p align="center">
@@ -316,10 +328,31 @@ Extract all color/spacing/typography variables from Figma [URL]
 | [`06-glossary.md`](./06-glossary.md) | 40+ terms explained simply | Non-developers |
 | [`07-pain-points.md`](./07-pain-points.md) | 10 problems + solutions | Troubleshooting |
 | [`08-fonts-and-pricing.md`](./08-fonts-and-pricing.md) | Fonts + free vs paid plans | Planning |
+| [`09-troubleshooting.md`](./09-troubleshooting.md) | Install/CLI/API/quality fixes | Problem solving |
 | [`QnA.md`](./QnA.md) | 15 real Q&As from learning | FAQ |
 | [`CLAUDE.md`](./CLAUDE.md) | Auto-applied AI rules | Automatic |
+| [`check-env.sh`](./check-env.sh) | Environment auto-diagnosis | Debugging |
 
 ---
+
+## Why This Repo Exists
+
+Figma's built-in plugins are limited. They can read designs, but they can't:
+- Generate production-ready React/Next.js code with TypeScript
+- Import any website into editable Figma layers
+- Build entire design systems with 100+ automated calls
+- Sync design tokens bidirectionally with Tailwind configs
+- Auto-detect missing Auto Layout and fix it before code conversion
+
+**This repo bridges that gap.** It combines the official Figma MCP server with community tools, battle-tested prompt patterns, and auto-install scripts — so you go from Figma URL to deployed code in minutes, not days.
+
+---
+
+## Environment Check
+
+```bash
+curl -sL https://raw.githubusercontent.com/MadKangYu/MadKangYu-FigMa-Mcp/main/check-env.sh | bash
+```
 
 ## Auto Update
 
@@ -331,12 +364,19 @@ curl -sL https://raw.githubusercontent.com/MadKangYu/MadKangYu-FigMa-Mcp/main/up
 
 ## Contributing
 
-PRs welcome. If you found a better prompt pattern or workflow, share it.
+PRs welcome. Found a better prompt pattern, workflow, or fix? Share it.
+
+---
+
+## Keywords
+
+`figma mcp` · `figma to react` · `figma to code` · `design to code` · `figma api` · `figma plugin` · `claude code figma` · `mcp server` · `figma dev mode` · `figma auto layout` · `design system automation` · `figma variables` · `code connect` · `figma typescript` · `figma tailwind` · `figma nextjs` · `ai design` · `figma cursor` · `figma vscode` · `피그마 MCP` · `피그마 코드 변환` · `AI 디자인 자동화`
 
 ---
 
 <p align="center">
   <strong>Don't build from scratch. Import good designs and modify.</strong><br/>
   <strong>Preview in Figma first. Convert to code only after approval.</strong><br/><br/>
-  <em>Figma is not a design tool — it's a <b>communication tool</b>.</em>
+  <em>Figma is not a design tool — it's a <b>communication tool</b>.</em><br/><br/>
+  <sub>Built with Claude Code by <a href="https://github.com/MadKangYu">MadKangYu</a> · MIT License · 2026</sub>
 </p>
