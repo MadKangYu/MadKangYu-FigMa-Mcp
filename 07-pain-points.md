@@ -195,6 +195,72 @@ Figma MCP = AI와 Figma를 연결하는 프로토콜 (이 프로젝트)
 
 ---
 
+---
+
+## #11. 3D / GIF / 동영상 / 애니메이션 미지원
+
+**문제**: MCP는 정적 디자인만 처리. 움직이는 건 전부 안 됨.
+
+| 유형 | Figma | MCP | 어떻게 되나 |
+|------|:----:|:---:|----------|
+| 3D | ❌ 2D만 | ❌ | Figma 자체가 미지원 |
+| GIF | ✅ 삽입 가능 | ❌ | 첫 프레임만 인식 |
+| 동영상 | ✅ 프로토타입 | ❌ | 플레이스홀더 |
+| Lottie | ✅ 플러그인 | ❌ | 정적 이미지로 인식 |
+| 인터랙션 | ✅ | ❌ | 정적 프레임만 |
+
+**해결: 2단계로 나누기**
+
+```
+# 1단계: MCP로 정적 뼈대 변환
+"이 디자인을 React로 변환해줘 [URL]"
+
+# 2단계: 코드에서 동적 요소 추가 지시
+"히어로에 Framer Motion 페이드인 추가해줘"
+"배경에 Three.js로 3D 회전 로고 넣어줘"
+"이 자리에 Lottie 플레이어 넣어줘. URL: [JSON]"
+"배경 동영상 자동재생 음소거 넣어줘. src: /videos/hero.mp4"
+```
+
+**3D 작업 구체적 방법:**
+
+```
+방법 1: Three.js / React Three Fiber (코드)
+  "히어로 섹션에 React Three Fiber로 3D 회전하는 제품 모델 넣어줘.
+   GLB 파일: /public/models/product.glb
+   배경 투명, 자동 회전, 마우스 드래그로 조작 가능"
+
+방법 2: Spline (노코드 3D → 임베드)
+  1. spline.design에서 3D 씬 제작
+  2. 공유 URL 복사
+  3. "이 자리에 Spline 3D 임베드 넣어줘: [Spline URL]"
+  → <iframe> 또는 @splinetool/react-spline 컴포넌트
+
+방법 3: Rive (인터랙티브 애니메이션)
+  1. rive.app에서 애니메이션 제작
+  2. .riv 파일 내보내기
+  3. "이 자리에 Rive 플레이어 넣어줘: /animations/hero.riv"
+
+방법 4: CSS 3D Transform (간단한 3D)
+  "이 카드에 호버 시 3D 플립 효과 추가해줘 (perspective + rotateY)"
+```
+
+**동적 요소 라이브러리 추천:**
+
+| 유형 | 라이브러리 | 복잡도 |
+|------|----------|:-----:|
+| 애니메이션 | Framer Motion | 쉬움 |
+| 3D 모델 | React Three Fiber | 보통 |
+| 노코드 3D | Spline (임베드) | 쉬움 |
+| Lottie | lottie-react | 쉬움 |
+| 인터랙티브 | Rive | 보통 |
+| 동영상 | HTML5 `<video>` | 쉬움 |
+| GIF 대체 | CSS @keyframes | 쉬움 |
+| 스크롤 | GSAP / ScrollTrigger | 보통 |
+| 파티클 | tsparticles | 보통 |
+
+---
+
 ## 한눈에 보는 대응 매트릭스
 
 | 문제 | 자동? | 프롬프트 있음? | 해결 난이도 |
@@ -209,3 +275,4 @@ Figma MCP = AI와 Figma를 연결하는 프로토콜 (이 프로젝트)
 | WebSocket 불안정 | ✅ 자동 | — | 쉬움 |
 | Dev Mode 제한 | ❌ 수동 | — | — |
 | Make 혼동 | ❌ 수동 | — | 용어 확인 |
+| **3D/GIF/동영상** | 📋 **2단계** | ✅ | 보통 |
