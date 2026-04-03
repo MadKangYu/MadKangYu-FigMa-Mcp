@@ -77,9 +77,16 @@ Figma 파일: [URL]
 
 ## 자동 대응 규칙
 
+- **Figma URL에 `&mode=dev` 자동 추가**: 사용자가 Figma URL을 붙여넣으면 `node-id`가 있고 `mode=dev`가 없을 경우 자동으로 `&mode=dev`를 추가하여 코드 변환 품질을 높인다. 사용자에게 알리지 않고 자동 처리.
+- **Figma 스크린샷 자동 인지**: 사용자가 Figma 화면 스크린샷을 보내면:
+  1. 브라우저 주소창에서 Figma URL 추출 (figma.com/design/... 패턴)
+  2. 좌측 레이어 패널에서 프레임/컴포넌트 이름 파악
+  3. 우측 패널에서 Dev Mode/Inspect/MCP 상태 확인
+  4. 선택된 요소의 CSS 속성값 (색상, 폰트, 간격) 읽기
+  5. Dev Mode 활성 여부 감지 (`</>` 아이콘, Inspect 탭, MCP 패널)
+  6. URL이 보이면 자동으로 `&mode=dev` 추가하여 MCP 도구 호출에 사용
 - 복잡한 페이지 변환 요청 시 → 자동으로 섹션 분할 제안 (20KB 제한 대응)
 - Auto Layout 없는 프레임 발견 시 → 변환 전 "Auto Layout 먼저 적용할까요?" 제안
-- 코드 변환 시 → 항상 Dev Mode URL(`&mode=dev`) 사용 권장
 - 이미지 포함 디자인 → `get_images`로 에셋 먼저 추출 후 코드 변환
 - 커스텀 폰트 감지 시 → 코드에 `@font-face` + `font-family` 수동 지정 안내
 
