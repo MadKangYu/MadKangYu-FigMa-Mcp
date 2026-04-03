@@ -14,6 +14,16 @@
 | **Console** (southleft/figma-console-mcp) | PAT + REST | O | 제한 | 디자인 시스템 API처럼 사용, 1,400+ Stars |
 | **figma-mcp-go** (vkhanhqui) | REST | O | X | **무료 플랜용** — 레이트 제한 없음, Go 기반 |
 
+### 추천 조합
+
+| 상황 | 추천 | 이유 |
+|------|------|------|
+| **입문/학습** | 공식 Remote만 | 설치 1줄, OAuth만 하면 끝 |
+| **실전 개발 (Free)** | 공식 Remote + figma-mcp-go | 읽기 무제한 우회 |
+| **실전 개발 (Pro)** | 공식 Remote만 | 200회/일 충분, 안정적 |
+| **디자인 시스템 팀** | 공식 Remote + Console | 92개 도구, 디버깅 |
+| **오프라인/로컬** | Desktop MCP | URL 불필요, 선택만으로 작동 |
+
 **공식 Remote 설치:**
 ```bash
 # Claude Code
@@ -59,22 +69,26 @@ claude mcp add --transport http figma https://mcp.figma.com/mcp
 | `create_new_file` | 빈 파일 생성 | — |
 | `generate_diagram` | FigJam 다이어그램 | — |
 
-### 기타 도구
-| `get_screenshot` | 노드 시각적 캡처 |
-| `get_metadata` | 노드 맵 (대용량 응답 시) |
-| `use_figma` | Plugin API로 캔버스에 JS 실행 (쓰기) |
-| `search_design_system` | 라이브러리 전체 검색 |
+### 기타 도구 (특수 상황)
+
+| 도구 | 용도 | 언제 쓰나 |
+|------|------|----------|
+| `get_screenshot` | 노드 시각적 캡처 | 변환 결과 비교 확인 |
+| `get_metadata` | 노드 맵 | 대용량 파일에서 구조 파악 |
+| `get_figjam` | FigJam 보드 읽기 | FigJam 다이어그램 분석 |
+| `get_variable_defs` | 변수/토큰 정의 | 디자인 토큰 추출 |
+| `whoami` | 사용자/플랜 정보 | 현재 권한 확인 |
+| `create_design_system_rules` | CLAUDE.md 규칙 생성 | 프로젝트 초기 설정 |
+
+### Code Connect 도구 (Org 플랜 이상)
+
+| 도구 | 용도 |
+|------|------|
 | `get_code_connect_suggestions` | 미매핑 컴포넌트 발견 |
 | `get_context_for_code_connect` | 컴포넌트 속성 가져오기 |
-| `add_code_connect_map` | Code Connect 매핑 등록 |
+| `add_code_connect_map` | 매핑 등록 |
 | `send_code_connect_mappings` | 매핑 일괄 전송 |
 | `get_code_connect_map` | 기존 매핑 읽기 |
-| `create_new_file` | 빈 파일 생성 |
-| `create_design_system_rules` | 프로젝트별 규칙 생성 |
-| `generate_diagram` | FigJam 다이어그램 생성 |
-| `get_figjam` | FigJam 보드 읽기 |
-| `get_variable_defs` | 변수/토큰 정의 전체 |
-| `whoami` | 사용자/플랜 정보 |
 
 ---
 
@@ -111,12 +125,29 @@ claude mcp add --transport http figma https://mcp.figma.com/mcp
 
 ---
 
-## 공식 스킬 7개
+## 공식 스킬 7개 + 추천 순위
 
 > 출처: github.com/figma/mcp-server-guide/skills/
 > **⚠️ figma-use 스킬은 항상 먼저 로드** — 모든 쓰기 작업 전 필수
 
-### 1. figma-use (기본 — 핵심)
+### 추천 순위
+
+| 순위 | 스킬 | 빈도 | 누가 쓰나 |
+|:---:|------|------|---------|
+| ★★★ | `figma-implement-design` | 매일 | 모든 개발자 — 디자인→코드 변환 |
+| ★★★ | `figma-use` | 매일 | 모든 쓰기 작업의 필수 전제 |
+| ★★☆ | `figma-generate-design` | 자주 | 새 화면/와이어프레임 생성 |
+| ★★☆ | `figma-create-design-system-rules` | 프로젝트 초기 | CLAUDE.md 규칙 자동 생성 |
+| ★☆☆ | `figma-generate-library` | 드물게 | 디자인 시스템 팀 (20-100+ 호출) |
+| ★☆☆ | `figma-code-connect` | 드물게 | Org 플랜 이상, 컴포넌트 매핑 |
+| ☆☆☆ | `figma-create-new-file` | 거의 안 씀 | 빈 파일 만들 때만 |
+
+> **처음 시작? `figma-implement-design` 하나만 알면 됨.**
+> 쓰기 작업 시 `figma-use`는 자동 로드.
+
+---
+
+### 1. figma-use (기본 — 핵심) ★★★
 `use_figma` 도구 사용 전체 규칙 정의. 17개 Critical Rules 포함.
 - `return`으로 출력 (figma.notify 금지)
 - 색상값 0-1 범위 (0-255 아님)
