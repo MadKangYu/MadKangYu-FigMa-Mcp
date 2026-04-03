@@ -99,55 +99,63 @@ fontFamily: {
 | 페이지/파일 | 3개 | 무제한 | 무제한 | 무제한 |
 | 히스토리 | 30일 | 무제한 | 무제한 | 무제한 |
 
-### MCP 관련 기능 (핵심)
+### MCP 관련 기능 (핵심) — 2026-04 최신
 
-| 기능 | Free | Pro | Org/Enterprise |
-|------|:---:|:---:|:---:|
-| **MCP 도구 호출** | **월 6회** | 분당 제한 | 분당 제한 |
-| `use_figma` (쓰기) | ✅ 베타 면제 | ✅ | ✅ |
-| `get_design_context` | ✅ (6회 내) | ✅ | ✅ |
-| Dev Mode 진입 | ✅ | ✅ | ✅ |
-| Dev Mode CSS 확인 | ✅ | ✅ | ✅ |
-| Dev Mode 변수/토큰 상세 | ❌ 제한 | ✅ | ✅ |
-| Code Connect 패널 | ❌ | ✅ | ✅ |
-| VS Code 연동 | ❌ | ✅ | ✅ |
-| Variables (변수 생성) | 1 컬렉션 | 무제한 | 무제한 |
-| Variable modes | 1 모드 | 4 모드 | 무제한 |
-| Components | ✅ | ✅ | ✅ |
-| 팀 라이브러리 | ❌ | ✅ | ✅ |
-| API rate limit | Tier 1 | Tier 1 | Tier 1+ |
+| 기능 | Free (Starter) | Pro Full ($16) | Pro Dev ($12) | Org ($55) | Enterprise ($90) |
+|------|:---:|:---:|:---:|:---:|:---:|
+| **MCP 도구 호출** | **월 6회** | **200/일, 10/분** | **200/일, 10/분** | 200/일, 15/분 | 600/일, 20/분 |
+| `use_figma` (쓰기) | ❌ 없음 | ✅ 베타 면제 | ✅ 베타 면제 | ✅ | ✅ |
+| `get_design_context` | ✅ (6회 내) | ✅ | ✅ | ✅ | ✅ |
+| Dev Mode | ❌ 없음 | ✅ | ✅ | ✅ | ✅ |
+| Code Connect | ❌ | ❌ | ❌ | ✅ | ✅ |
+| VS Code 연동 | ❌ | ✅ | ✅ | ✅ | ✅ |
+| Variables 모드 | 없음 | 10 모드 | 읽기만 | 20 모드 | 무제한 |
+| 커스텀 폰트 공유 | ❌ | ❌ | ❌ | ✅ | ✅ |
+| 팀 라이브러리 | ❌ | ✅ | 읽기만 | ✅ | ✅ |
+| Variables REST API | ❌ | ❌ | ❌ | ❌ | ✅ |
+| 레이트 면제 도구 | `whoami`, `generate_figma_design` | 동일 | 동일 | 동일 | 동일 |
 
-### 무료로 할 수 있는 것 (정리)
+### 무료로 할 수 있는 것 (정확)
 
 ```
 ✅ Figma 파일 3개까지 생성
-✅ MCP 도구 월 6회 호출 (use_figma 베타 면제)
-✅ Dev Mode 진입 + CSS 확인
-✅ 디자인 → 코드 변환 (월 6회)
-✅ Figma에 디자인 생성 (use_figma)
+✅ MCP 읽기 도구 월 6회 (get_design_context 등)
 ✅ Google Fonts 전체 사용
 ✅ 컴포넌트 생성/사용
-✅ 1개 Variable 컬렉션 + 1 모드
+✅ generate_figma_design (레이트 면제)
+✅ 기본 프로토타이핑
+
+❌ use_figma (쓰기) 불가
+❌ Dev Mode 불가
+❌ Variable modes 불가
+❌ 팀 라이브러리 불가
 ```
 
 ### 유료가 필요한 순간
 
 ```
-💰 월 6회 이상 MCP 사용 → Pro 필요 (또는 figma-mcp-go로 우회)
-💰 팀 라이브러리 공유 → Pro 필요
-💰 Variable 다중 모드 (라이트/다크) → Pro 필요
-💰 Code Connect (컴포넌트↔코드 매핑) → Pro 필요
-💰 VS Code 연동 → Pro 필요
-💰 파일 4개 이상 → Pro 필요
+💰 $12/월 (Pro Dev seat) — 최소 실전용:
+   → MCP 200회/일 + use_figma 쓰기 + Dev Mode
+   → 개발자에게 가장 가성비 좋은 선택
+
+💰 $16/월 (Pro Full seat) — 디자인 + 개발:
+   → 위 전부 + Variable 10 모드 + 팀 라이브러리
+
+💰 $55/월 (Organization) — 팀 협업:
+   → Code Connect + 커스텀 폰트 공유 + 브랜칭
+
+💰 $90/월 (Enterprise) — 대규모:
+   → Variables REST API + 600회/일 + SCIM
 ```
 
 ### 현실적 추천
 
 ```
-혼자 학습/테스트 → Free + figma-mcp-go (무제한 우회) = $0
-실전 프로젝트 1-2개 → Free로 충분
-팀 협업/다수 프로젝트 → Pro ($15/월) 필요
-디자인 시스템 구축 → Pro 이상 필수
+혼자 학습/테스트    → Free + figma-mcp-go (읽기 무제한) = $0
+                    ⚠️ 쓰기(use_figma)는 불가 → 읽기만
+실전 개발자         → Pro Dev seat ($12/월) ← 가장 추천
+디자인 + 개발       → Pro Full seat ($16/월)
+팀 + 디자인 시스템  → Organization ($55/월)
 ```
 
 ---
