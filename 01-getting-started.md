@@ -103,6 +103,18 @@ https://www.figma.com/design/ABC123XYZ/My-Design?node-id=123-456
 ### Copy link to selection
 우클릭 → "Copy link to selection" — 선택한 요소의 URL 복사.
 
+### 방법 3: Dev Mode URL (코드 변환 시 최고 품질) ⭐
+```
+https://www.figma.com/design/ABC123/My-Design?node-id=123-456&mode=dev
+```
+1. Figma에서 요소 선택
+2. 상단 메뉴 `</>` (Dev Mode) 클릭
+3. 우클릭 → Copy link to selection
+4. 링크에 `&mode=dev`가 포함됨
+
+> **Dev Mode 링크를 쓰면 코드 변환 품질이 올라감.**
+> Figma가 레이아웃 구조 정보를 더 명확하게 제공 → Claude가 더 정확한 코드 생성.
+
 ### Dev Mode에서 Copy example prompt
 Dev Mode 패널 오른쪽 상단 "Copy example prompt" 버튼 → Claude Code에 바로 붙여넣기 가능한 프롬프트가 클립보드에 복사됨.
 
