@@ -284,3 +284,56 @@ Figma 파일: [URL]
 [URL] 이 파일의 3개 페이지를 비교해서:
 각 섹션 구조, 공통 패턴, 베스트 조합 추천해줘.
 ```
+
+---
+
+## 프레임워크별 상세 프롬프트 (복붙용)
+
+### React + TypeScript + Tailwind
+```
+이 Figma 디자인을 React + TypeScript + Tailwind CSS 컴포넌트로 만들어줘:
+[Figma URL]
+
+조건:
+- 함수형 컴포넌트
+- TypeScript로 props 타입 정의
+- Tailwind 유틸리티 클래스 사용
+- 모바일 먼저 반응형
+- 접근성 속성 포함 (aria-label, role)
+```
+
+### Next.js App Router 페이지
+```
+이 Figma 디자인을 Next.js App Router 페이지로 만들어줘:
+[Figma URL]
+
+조건:
+- app/ 디렉토리 구조
+- Server Component 기본
+- 클라이언트 인터랙션은 'use client' 분리
+- metadata export 포함
+- 반응형 (모바일 먼저)
+```
+
+### Vue 3 + Composition API
+```
+이 Figma 디자인을 Vue 3 컴포넌트로 만들어줘:
+[Figma URL]
+
+조건:
+- <script setup> + Composition API
+- TypeScript
+- scoped CSS 또는 Tailwind
+```
+
+### HTML + CSS (프레임워크 없이)
+```
+이 Figma 디자인을 순수 HTML + CSS로 만들어줘:
+[Figma URL]
+
+조건:
+- 시맨틱 HTML5 태그
+- CSS Grid/Flexbox 레이아웃
+- CSS 커스텀 프로퍼티 (변수)
+- 반응형 미디어 쿼리
+```
