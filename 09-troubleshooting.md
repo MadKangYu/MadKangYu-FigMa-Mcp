@@ -4,6 +4,78 @@
 
 ---
 
+## macOS 권한 설정 (자동화 전 필수)
+
+### Figma Desktop 권한
+```
+System Settings → Privacy & Security → Accessibility
+→ Figma 추가 (자동화 플러그인 실행에 필요)
+
+System Settings → Privacy & Security → Automation
+→ Figma가 다른 앱 제어 허용
+```
+
+### Terminal/iTerm 권한
+```
+System Settings → Privacy & Security → Full Disk Access
+→ Terminal (또는 iTerm, Warp) 추가
+→ Claude Code가 파일 읽기/쓰기 가능하게
+
+System Settings → Privacy & Security → Developer Tools
+→ Terminal 추가 (Gatekeeper 우회)
+```
+
+### Homebrew 설치 시 (setup.sh)
+```
+문제: "brew install --cask figma" 시 "not verified" 경고
+해결:
+  System Settings → Privacy & Security → "Open Anyway" 클릭
+  또는: xattr -d com.apple.quarantine /Applications/Figma.app
+```
+
+### Node.js npx 권한
+```
+문제: npx 실행 시 "permission denied"
+해결:
+  # npm 글로벌 디렉토리 권한 수정
+  sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
+  
+  # 또는 nvm 사용 (권한 문제 없음)
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+  nvm install 22
+```
+
+### Figma 플러그인 로컬 실행 허용
+```
+문제: "Import plugin from manifest" 시 보안 경고
+해결:
+  Figma Desktop → Preferences → 
+  "Allow plugins from development" 활성화
+  (기본적으로 Development 메뉴가 보이면 이미 활성화됨)
+```
+
+### WebSocket localhost 방화벽
+```
+문제: figma-mcp-go ws://localhost:1994 연결 안 됨
+해결:
+  System Settings → Network → Firewall → Options
+  → "Automatically allow built-in software" 체크
+  → Node.js / npx 허용 추가
+  
+  또는 방화벽 일시 비활성화하여 테스트
+```
+
+### Claude Code 터미널 권한
+```
+문제: claude mcp add 시 "EACCES: permission denied"
+해결:
+  # Claude Code 설정 파일 권한
+  chmod 644 ~/.claude.json
+  chmod -R 755 ~/.claude/
+```
+
+---
+
 ## 설치/CLI 문제
 
 ### Node.js 버전 호환
