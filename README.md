@@ -36,6 +36,82 @@
 
 ---
 
+## I want to... (find what you need in 3 seconds)
+
+| I want to... | Do this | Guide |
+|-------------|---------|:-----:|
+| **Install everything** | `curl setup.sh \| bash` | [setup.sh](./setup.sh) |
+| **Figma → React code** | Paste URL + "convert to React" | [04](./04-workflows.md) |
+| **Create design in Figma** | "Make a landing page in [URL]" | [04](./04-workflows.md) |
+| **Clone a website** | "Import https://cal.com" | [04](./04-workflows.md) |
+| **Fix bad code output** | `&mode=dev` + section-by-section | [07](./07-pain-points.md) |
+| **Add 3D / animation** | MCP skeleton → code for motion | [07](./07-pain-points.md) |
+| **Korean fonts** | Noto Sans KR or Pretendard | [08](./08-fonts-and-pricing.md) |
+| **Free vs paid?** | Free: 6/mo. Pro Dev $12 best | [08](./08-fonts-and-pricing.md) |
+| **Fix errors** | "tool not found", 429, timeout | [09](./09-troubleshooting.md) |
+| **Check my setup** | `curl check-env.sh \| bash` | [check-env.sh](./check-env.sh) |
+| **Understand terms** | 40+ terms in plain language | [06](./06-glossary.md) |
+| **macOS permissions** | Accessibility + Firewall | [09](./09-troubleshooting.md) |
+
+---
+
+## What Can You Actually Do? (No technical knowledge needed)
+
+### Design (디자인)
+| You say... | What happens |
+|-----------|-------------|
+| "Make a landing page for my coffee shop" | AI creates a full page design in Figma |
+| "I like this website, make mine similar" | AI copies the layout and you change text/colors |
+| "Show me 5 app screens side by side" | AI generates a complete app flow in Figma |
+| "Make the button bigger and green" | AI modifies the exact element instantly |
+| "Add a pricing section with 3 plans" | AI adds new sections to existing designs |
+| "Create a logo concept" | AI generates options in Figma canvas |
+
+### Marketing (마케팅)
+| You say... | What happens |
+|-----------|-------------|
+| "Turn this design into a real website" | AI generates React/HTML code from Figma |
+| "Make a mobile version of this page" | AI creates responsive 375px layout |
+| "Export all images from this design" | AI extracts PNG/SVG/JPG files |
+| "Create a pitch deck from these screens" | AI arranges screens as Figma Slides |
+| "Change all text to Korean" | AI finds and replaces every text node |
+| "What fonts and colors is this site using?" | AI analyzes and lists all design tokens |
+
+### Collaboration (협업)
+| You say... | What happens |
+|-----------|-------------|
+| "Share this design with my client" | Figma link — anyone can view in browser |
+| "My client wants the header changed" | Client comments in Figma → AI fixes it |
+| "Sync design colors to our codebase" | AI extracts tokens → Tailwind config |
+| "Is this design consistent across pages?" | AI compares layouts and flags differences |
+
+### What you DON'T need
+```
+❌ Design skills      → AI handles layout, spacing, colors
+❌ Coding knowledge    → AI generates production code  
+❌ Figma expertise     → AI operates Figma for you
+❌ Design system       → AI can build one from scratch
+❌ Multiple tools      → Figma + Claude Code = everything
+```
+
+---
+
+## Works With (not just Claude Code)
+
+| AI Tool | Figma MCP Support | Setup |
+|---------|:-----------------:|-------|
+| **Claude Code** | ✅ Full | This repo's setup.sh |
+| **Cursor** | ✅ Full | `/add-plugin figma` |
+| **VS Code + Copilot** | ✅ Full | MCP:Add Server → HTTP |
+| **Codex (OpenAI)** | ✅ Full | `gemini extensions install` |
+| **Gemini CLI** | ✅ Full | Extension install |
+| **Windsurf** | ✅ Full | MCP config |
+| **Warp** | ✅ Partial | MCP config |
+
+All use the same Figma MCP server: `https://mcp.figma.com/mcp`
+
+---
+
 ## The Problem
 
 ```
@@ -345,6 +421,51 @@ Figma's built-in plugins are limited. They can read designs, but they can't:
 - Auto-detect missing Auto Layout and fix it before code conversion
 
 **This repo bridges that gap.** It combines the official Figma MCP server with community tools, battle-tested prompt patterns, and auto-install scripts — so you go from Figma URL to deployed code in minutes, not days.
+
+---
+
+## Download & Project Setup
+
+### Option 1: Auto install (recommended)
+```bash
+curl -sL https://raw.githubusercontent.com/MadKangYu/MadKangYu-FigMa-Mcp/main/setup.sh | bash
+```
+Saves to `~/Projects/figma-mcp-learning/`
+
+### Option 2: Git clone
+```bash
+git clone https://github.com/MadKangYu/MadKangYu-FigMa-Mcp.git ~/Projects/figma-mcp-learning
+```
+
+### Option 3: Download ZIP
+[Download ZIP](https://github.com/MadKangYu/MadKangYu-FigMa-Mcp/archive/refs/heads/main.zip) → extract to your preferred location.
+
+### Recommended folder structure
+
+```
+~/Projects/
+├── figma-mcp-learning/     ← this repo (guides + scripts)
+├── my-app/                 ← your actual project
+│   ├── CLAUDE.md           ← copy CLAUDE.md here for auto-rules
+│   ├── src/components/     ← Figma → code output goes here
+│   └── public/images/      ← Figma → image export goes here
+└── .figma-mcp-go-plugin/   ← auto-created by setup.sh
+```
+
+### Per-project setup
+```bash
+# Copy CLAUDE.md to your project for auto Figma rules
+cp ~/Projects/figma-mcp-learning/CLAUDE.md ~/Projects/my-app/CLAUDE.md
+```
+
+### Platform notes
+
+| Platform | Default path | Notes |
+|----------|-------------|-------|
+| macOS | `~/Projects/` | setup.sh creates this |
+| Windows | `%USERPROFILE%\Projects\` | Use Git Bash or WSL |
+| Linux | `~/Projects/` | Same as macOS |
+| Codespaces | `/workspaces/` | Git clone directly |
 
 ---
 
