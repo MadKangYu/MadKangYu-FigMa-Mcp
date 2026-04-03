@@ -119,6 +119,35 @@ Figma 파일: [URL]
 5. 한번에 다 시키지 말고 단계별 확인
 6. 수정 요청 시 "어디가 왜 다른지" 구체적으로 짚어주기
 
+## Chrome CDP 연동 (상세페이지 접근)
+
+Figma MCP가 접근 못하는 콘텐츠(로그인 필요 사이트, SPA, 동적 페이지)는 Chrome CDP로 해결:
+
+1. **OpenChrome MCP** (`openchrome`)로 실제 브라우저 접근:
+   - `navigate` → 로그인 필요한 상세페이지 접근
+   - `read_page` → 렌더링된 HTML/CSS 추출
+   - `javascript_tool` → SPA 동적 콘텐츠 로드 대기
+   - `inspect` → DOM 요소 상세 분석
+
+2. **CDP → Figma 파이프라인**:
+   ```
+   OpenChrome으로 상세페이지 접근 → 구조/스타일 추출
+   → generate_figma_design으로 Figma에 디자인 생성
+   → use_figma로 세부 수정
+   → get_design_context로 코드 변환
+   ```
+
+3. **활용 시나리오**:
+   - 로그인 후에만 보이는 대시보드 → CDP로 접근 → Figma에 가져오기
+   - 쇼핑몰 상세페이지 → CDP로 상품 정보 + 레이아웃 추출
+   - SPA 앱 내부 화면 → CDP로 렌더링 완료 후 캡처
+   - 경쟁사 유료 콘텐츠 레이아웃 분석 → CDP + Figma
+
+4. **WebFetch 403 차단 시 대안**:
+   - `WebFetch` 실패 → `openchrome navigate` + `read_page` 사용
+   - 쿠키/세션 필요 → `openchrome cookies` 관리
+   - JavaScript 렌더링 필요 → `openchrome javascript_tool`로 대기 후 추출
+
 ## 로컬 프로젝트 경로 인지
 
 Figma 디자인과 코드를 연결하려면 로컬 프로젝트 위치를 알아야 함:
