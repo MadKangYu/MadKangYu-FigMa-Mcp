@@ -2,3 +2,4 @@
 archive/
 *.tmp
 node_modules/
+.omc/

@@ -1,7 +1,0 @@
-{
-  "tool_name": "WebFetch",
-  "tool_input_preview": "{\"url\":\"https://github.com/grab/cursor-talk-to-figma-mcp/tree/main/src/figma_plugin\",\"prompt\":\"Extract how the Figma plugin works, what files are needed, and how to install it in Figma Desktop.\"}",
-  "error": "Request failed with status code 404",
-  "timestamp": "2026-04-03T12:19:38.857Z",
-  "retry_count": 3
-}
