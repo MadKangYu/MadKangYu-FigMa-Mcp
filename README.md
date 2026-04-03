@@ -1,5 +1,9 @@
 # Figma MCP — Design by Talking
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Figma MCP](https://img.shields.io/badge/Figma-MCP-blue?logo=figma)](https://developers.figma.com/docs/figma-mcp-server/)
+[![Claude Code](https://img.shields.io/badge/Claude-Code-orange?logo=anthropic)](https://claude.ai/code)
+
 > **[한국어 README](./README.ko.md)** | English
 
 ## What is this?
