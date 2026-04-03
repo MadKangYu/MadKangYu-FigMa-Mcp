@@ -85,6 +85,19 @@ Figma 파일: [URL]
   4. 선택된 요소의 CSS 속성값 (색상, 폰트, 간격) 읽기
   5. Dev Mode 활성 여부 감지 (`</>` 아이콘, Inspect 탭, MCP 패널)
   6. URL이 보이면 자동으로 `&mode=dev` 추가하여 MCP 도구 호출에 사용
+  7. **다중 레이어 선택 시**: 스크린샷에 여러 레이어가 보이면 각각의 이름/속성을 개별 파악하고, 필요시 `get_metadata`로 node-id를 일괄 조회하여 개별 처리
+- **코드 → Figma 레이어 역추적**: 코드에서 클래스명/컴포넌트명이 보이면 MCP로 해당 레이어를 자동 검색:
+  1. `search_design_system`으로 컴포넌트명 검색 (예: "Button", "Card")
+  2. `get_metadata`로 전체 노드 트리에서 이름 매칭
+  3. figma-mcp-go의 `search_nodes`로 레이어 이름 패턴 검색 (예: "Hero", "Nav")
+  4. 매칭된 node-id로 `get_design_context` 호출 → 정확한 요소 타겟팅
+  5. 코드의 CSS 클래스 (`hero-section`, `nav-button`) → Figma 레이어 이름으로 매핑 시도
+- **텍스트 콘텐츠 자동 인지**: 레퍼런스를 복제 후 텍스트만 수정한 경우:
+  1. figma-mcp-go `scan_text_nodes`로 전체 텍스트 노드 스캔
+  2. 스크린샷에서 보이는 텍스트를 OCR 수준으로 읽어서 정확한 문구 파악
+  3. 코드 변환 시 Figma의 **실제 텍스트 내용**을 그대로 반영 (placeholder 금지)
+  4. 한국어/영어 혼합 텍스트도 정확히 유지
+  5. 버튼 레이블("무료 체험 시작하기"), 헤드라인, 설명문 등 모든 텍스트를 코드에 하드코딩이 아닌 **Figma 원본 그대로** 사용
 - 복잡한 페이지 변환 요청 시 → 자동으로 섹션 분할 제안 (20KB 제한 대응)
 - Auto Layout 없는 프레임 발견 시 → 변환 전 "Auto Layout 먼저 적용할까요?" 제안
 - 이미지 포함 디자인 → `get_images`로 에셋 먼저 추출 후 코드 변환
@@ -98,6 +111,23 @@ Figma 파일: [URL]
 4. Dev Mode 링크 사용 (`&mode=dev`) — 최고 품질
 5. 한번에 다 시키지 말고 단계별 확인
 6. 수정 요청 시 "어디가 왜 다른지" 구체적으로 짚어주기
+
+## 로컬 프로젝트 경로 인지
+
+Figma 디자인과 코드를 연결하려면 로컬 프로젝트 위치를 알아야 함:
+1. **현재 작업 디렉토리 확인**: `pwd` — Claude Code가 실행 중인 위치
+2. **프로젝트 루트 탐지**: `package.json`, `tsconfig.json`, `.git` 기준
+3. **컴포넌트 디렉토리 자동 탐색**: `src/components/`, `app/`, `pages/` 패턴
+4. **Figma 레이어명 ↔ 로컬 파일 매칭**:
+   - Figma "HeroSection" → `src/components/HeroSection.tsx` 검색
+   - Figma "NavBar" → `grep -r "NavBar" src/` 로 파일 위치 파악
+5. **CLAUDE.md에 프로젝트 경로 명시 시 자동 참조**:
+   ```
+   ## 프로젝트 경로
+   - 메인: /Users/yu/Projects/my-app
+   - 컴포넌트: src/components/ui/
+   - 스타일: tailwind.config.ts
+   ```
 
 ## 참조 파일
 
